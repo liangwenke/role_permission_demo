@@ -1,0 +1,96 @@
+<style type="text/css">
+li.on {
+  background:#ccc;
+}
+.box {
+	float: left;
+	height: 300px;
+	width: 220px;
+	padding: 10px 25px 10px 0;
+}
+.list {
+	background: #FFFFFF none repeat scroll 0 0;
+	border: 1px solid #97D7F2;
+	height: 280px;
+	width: 220px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+}
+.list li {
+	color: #000000;
+	cursor: pointer;
+	height: 22px;
+	width: 190px;
+	line-height: 22px;
+	padding-left: 10px;
+}
+.list li span.edit {
+	display: -moz-inline-box;
+	display: inline-block;
+	width: 160px;
+}
+.permission_line {
+	width:420px;
+}
+.permission_line ul li {
+	width: 390px;
+}
+.permission_line ul li span.edit {
+	width: 360px;
+}
+.list a.del {
+	color: red;
+	font-size: 10px;
+}
+.box a.new {
+	color: blue;
+	margin-left: 50px;
+}
+</style>
+
+<div class="block">
+  <h2 class="title">Permissions</h2>
+  
+	<div class="box">
+		<span>模块</span>
+		<a href="#" class="new">添加模块</a>
+		<div class="list">
+			<ul id="system_modules" class="item">
+				<% @system_modules.each do |system_module| -%>
+				<li rel="<%= system_module.id %>">
+					<span class='edit'><%= system_module.name %>(<%= system_module.id %>)</span><a href='#' class='del'>删除</a>
+				</li>
+				<% end -%>
+			</ul>
+		</div>
+	</div>
+
+	<div class="box">
+		<span>功能</span>
+		<a href="#" class="new">添加功能</a>
+		<div class="list">
+			<ul id="system_functions" class="cat"></ul>
+		</div>
+	</div>
+	
+	<div class="box">
+		<span>操作</span>
+		<a href="#" class="new">添加操作</a>
+		<div class="list">
+			<ul id="permissions" class="cat"></ul>
+		</div>
+	</div>
+
+	<div class="box">
+		<span>请求</span>
+		<a href="#" class="new">添加请求</a>
+		<div class="list permission_line">
+			<ul id="permission_lines" class="cat"></ul>
+		</div>
+	</div>
+	
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar') -%>
+
+<%= javascript_include_tag "permission", "jeditable", "jquery.json" %>

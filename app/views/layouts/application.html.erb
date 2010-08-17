@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Web App</title>
+  <%= stylesheet_link_tag 'layout', "web_app_theme", "web_app_theme_override", "themes/drastic-dark/style", :cache => true %>
+  <%= javascript_include_tag 'jquery', 'jquery.localscroll', 'jquery.scrollTo' %>
+  <script type="text/javascript" charset="utf-8">
+    // <![CDATA[
+    var Theme = {
+      activate: function(name) {
+        window.location.hash = 'themes/' + name
+        Theme.loadCurrent();
+      },
+
+      loadCurrent: function() {
+        var hash = window.location.hash;
+        if (hash.length > 0) {
+          matches = hash.match(/^#themes\/([a-z0-9\-_]+)$/);
+          if (matches && matches.length > 1) {
+            $('#current-theme').attr('href', 'stylesheets/themes/' + matches[1] + '/style.css');
+          } else {
+            alert('theme not valid');
+          }
+        }
+      }
+    }
+
+    $(document).ready(function() {
+      Theme.loadCurrent();
+      $.localScroll();
+      $('.table :checkbox.toggle').each(function(i, toggle) {
+        $(toggle).change(function(e) {
+          $(toggle).parents('table:first').find(':checkbox:not(.toggle)').each(function(j, checkbox) {
+            checkbox.checked = !checkbox.checked;
+          })
+        });
+      });
+      
+      $('#roles :checkbox.toggles, #admins :checkbox.toggles').live('click', function() {
+        $('#roles, #admins').find(':checkbox:not(.toggles)').each(function(i, checkbox) {
+          checkbox.checked = !checkbox.checked;
+        })
+      });
+      
+      $('#permissions :checkbox.toggles').live('click', function() {
+        $('#permissions').find(':checkbox:not(.toggles)').each(function(i, checkbox) {
+          checkbox.checked = !checkbox.checked;
+        })
+      });
+      
+      $('#main-navigation li').removeClass('active');
+      $('#main-navigation li[rel="<%= @active_main_navigation %>"]').addClass('active');
+      
+    });
+    // ]]>
+  </script>
+</head>
+<body>
+  <div id="container">
+    <div id="header">
+      <h1><a href="/">Web App</a></h1>
+      <div id="user-navigation">
+        <ul class="wat-cf">
+          <li><a href="#"><%= t("web-app-theme.profile", :default => "Profile") %></a></li>
+          <li><a href="#"><%= t("web-app-theme.settings", :default => "Settings") %></a></li>
+          <li><a href="/logout" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
+        </ul>
+      </div>      
+      <div id="main-navigation">
+        <ul class="wat-cf">
+          <li class="first active" rel="admins"><a href="/admins">Admins</a></li>
+          <li rel="roles"><a href="/roles">Roles</a></li>
+          <li rel="permissions"><a href="/permissions">Permissions</a></li>
+          <li rel="permission_lines"><a href="/permission_lines">Permission Lines</a></li>
+          <li rel="functions"><a href="/system_functions">Functions</a></li>
+          <li rel="modules"><a href="/system_modules">Modules</a></li>
+          <li rel="departments"><a href="/departments">Departments</a></li>
+          <li rel="operations"><a href="/operations">Operations</a></li>
+          <li rel="audits"><a href="/audits">Audits</a></li>
+        </ul>
+      </div>
+    </div>    
+    <div id="wrapper" class="wat-cf">
+      <div class="flash">
+        <% flash.each do |type, message| -%>
+          <div class="message <%= type %>">
+            <p><%= message %></p>
+          </div>
+        <% end -%>
+      </div>
+      <div id="main">
+        <%= yield %>
+        <div id="footer">
+          <div class="block">
+            <p>Copyright &copy; <%= Time.now.year %> Web App.</p>
+          </div>      
+        </div>
+      </div>
+      <div id="sidebar">
+        <%= yield :sidebar %>
+      </div>
+    </div>    
+  </div>
+</body>
+</html>

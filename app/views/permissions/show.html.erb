@@ -1,0 +1,34 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", permissions_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_permission_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", permission_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.permission.system_function_id", :default => t("activerecord.labels.system_function_id", :default => "Sys function")) %>:</b>
+          <%= @permission.system_function_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.permission.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @permission.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.permission.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b>
+          <%= @permission.description %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_permission_path(@permission), :class => "button" %> 
+        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", permission_path(@permission), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar') -%>

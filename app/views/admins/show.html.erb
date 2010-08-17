@@ -1,0 +1,54 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", admins_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_admin_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", admin_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+      
+        <p>
+          <b><%= t("activerecord.attributes.admin.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= @admin.name %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.admin.password", :default => t("activerecord.labels.password", :default => "Password")) %>:</b>
+          <%= @admin.password %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.admin.department_id", :default => t("activerecord.labels.department_id", :default => "Department")) %>:</b>
+          <%= @admin.department %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.role.name", :default => t("activerecord.labels.name", :default => "Roles")) %>:</b>
+          <%= @admin.roles.map(&:name).join(', ') %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.admin.description", :default => t("activerecord.labels.description", :default => "Description")) %>:</b>
+          <%= @admin.description %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.admin.last_login", :default => t("activerecord.labels.last_login", :default => "Last login")) %>:</b>
+          <%= @admin.last_login %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.admin.login_times", :default => t("activerecord.labels.login_times", :default => "Login times")) %>:</b>
+          <%= @admin.login_times %>
+        </p>
+      <div class="wat-cf">
+        <%= link_to "#{image_tag("web-app-theme/application_edit.png", :alt => "#{t("web-app-theme.edit", :default=> "Edit")}")} #{t("web-app-theme.edit", :default=> "Edit")}", edit_admin_path(@admin), :class => "button" %> 
+        <%= link_to "#{image_tag("web-app-theme/cross.png", :alt => "#{t("web-app-theme.delete", :default=> "Delete")}")} #{t("web-app-theme.delete", :default => "Delete")}", admin_path(@admin), :method => "delete", :class => "button", :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+      </div>      
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar') -%>

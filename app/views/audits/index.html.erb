@@ -1,0 +1,86 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", audits_path  %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> Admins</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>     
+          <th class="first">ID</th>
+          <th>
+            <%= t("activerecord.attributes.audit.username", :default => t("activerecord.labels.username", :default => "User Name")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.audit.user_type", :default => t("activerecord.labels.action", :default => "User Type")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.audit.auditable_id", :default => t("activerecord.labels.auditable_id", :default => "Auditable Id")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.audit.auditable_type", :default => t("activerecord.labels.auditable_type", :default => "Auditable Type")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.audit.action", :default => t("activerecord.labels.action", :default => "Action")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.audit.changes", :default => t("activerecord.labels.changes", :default => "Changes")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.audit.version", :default => t("activerecord.labels.version", :default => "Version")) %>
+          </th>
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th>&nbsp;</th>
+        </tr>
+        <% @audits.each do |audit| -%>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td>
+              <%= audit.id %>
+            </td>
+            <td>
+              <%= Admin.find_by_id(audit.user_id) %>
+            </td>
+            <td>
+              <%= audit.user_type %>
+            </td>
+            <td>
+              <%= audit.auditable_id %>
+            </td>
+            <td>
+              <%= audit.auditable_type %>
+            </td>
+            <td>
+              <%= audit.action %>
+            </td>
+            <td>
+              <% audit.changes.each do |column, values| -%>
+                <% next if values.blank? %>
+                <%= "#{column}: #{values.is_a?(Array) ? values.join(' => ') : values}" %><br/>
+              <% end -%>
+            </td>
+            <td>
+              <%= audit.version %>
+            </td>
+            <td>
+              <%= audit.created_at %>
+            </td>
+            <td class="last">
+              <%= link_to "#{t("web-app-theme.show", :default => "Show")}", audit_path(audit) %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+
+        <%= will_paginate @audits %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar') -%>

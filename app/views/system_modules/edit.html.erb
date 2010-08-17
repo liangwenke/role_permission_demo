@@ -1,0 +1,19 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", system_modules_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_system_module_path %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_system_module_path %></li>
+    </ul>
+  </div>          
+  <div class="content">            
+    <h2 class="title"><%= t("web-app-theme.edit", :default => "Edit") %> SysModule</h2>
+    <div class="inner">
+      <% form_for @system_module, :url => system_module_path(@system_module), :html => { :class => :form } do |f| -%>
+        <%= render :partial => "form", :locals => {:f => f} %>
+      <% end -%>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar') -%>

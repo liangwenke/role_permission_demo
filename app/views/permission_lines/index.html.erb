@@ -1,0 +1,74 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first active"><%= link_to "#{t("web-app-theme.list", :default => "List")}", permission_lines_path  %></li>
+      <li><%= link_to "#{t("web-app-theme.new", :default => "New")}", new_permission_line_path %></li>
+    </ul>
+  </div>          
+  <div class="content">          
+    <h2 class="title"><%= t("web-app-theme.all", :default => "All")  %> PermissionLines</h2>
+    <div class="inner">
+      <table class="table">
+        <tr>             
+          <th class="first">ID</th>
+          <th>
+            <%= t("activerecord.attributes.permission_line.permission_id", :default => t("activerecord.labels.permission_id", :default => "Permission")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.permission_line.controller", :default => t("activerecord.labels.controller", :default => "Controller")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.permission_line.action", :default => t("activerecord.labels.action", :default => "Action")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.permission_line.method", :default => t("activerecord.labels.method", :default => "Dethod")) %>
+          </th>
+          <th>
+            <%= t("activerecord.attributes.permission_line.description", :default => t("activerecord.labels.description", :default => "Description")) %>
+          </th>
+          <th><%= t("web-app-theme.created_at", :default => "Created at")  %></th>
+          <th class="last">&nbsp;</th>
+        </tr>
+        <% @permission_lines.each do |permission_line| -%>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td>
+              <%= permission_line.id %>
+            </td>
+            <td>
+              <%= link_to permission_line.permission, permission_path(permission_line.permission) %>
+            </td>
+            <td>
+              <%= permission_line.controller %>
+            </td>
+            <td>
+              <%= permission_line.action %>
+            </td>
+            <td>
+              <%= permission_line.method %>
+            </td>
+            <td>
+              <%= permission_line.description %>
+            </td>
+            <td>
+              <%= permission_line.created_at %>
+            </td>
+            <td class="last">
+              <%= link_to "#{t("web-app-theme.show", :default => "Show")}", permission_line_path(permission_line) %> |
+              <%= link_to "#{t("web-app-theme.edit", :default => "Edit")}", edit_permission_line_path(permission_line) %> |
+              <%= link_to "#{t("web-app-theme.delete", :default => "Delete")}", permission_line_path(permission_line), :method => :delete, :confirm => "#{t("web-app-theme.confirm", :default => "Are you sure?")}" %>
+            </td>
+          </tr>
+        <% end -%>
+      </table>
+      <div class="actions-bar wat-cf">
+        <div class="actions">
+        </div>
+
+        <%= will_paginate @permission_lines %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'sidebar') -%>

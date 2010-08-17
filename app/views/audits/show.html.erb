@@ -1,0 +1,54 @@
+<div class="block">
+  <div class="secondary-navigation">
+    <ul class="wat-cf">
+      <li class="first"><%= link_to "#{t("web-app-theme.list", :default => "List")}", audits_path  %></li>
+      <li class="active"><%= link_to "#{t("web-app-theme.show", :default => "Show")}", audit_path %></li>
+    </ul>
+  </div>          
+  <div class="content">
+    <div class="inner">
+
+        <p>
+          <b><%= t("activerecord.attributes.audit.user_id", :default => t("activerecord.labels.user_id", :default => "User Id")) %>:</b>
+          <%= @audit.user_id %>
+        </p>
+      
+        <p>
+          <b><%= t("activerecord.attributes.audit.name", :default => t("activerecord.labels.name", :default => "Name")) %>:</b>
+          <%= Admin.find_by_id(@audit.user_id) %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.audit.auditable_id", :default => t("activerecord.labels.auditable_id", :default => "Auditable Id")) %>:</b>
+          <%= @audit.auditable_id %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.audit.auditable_type", :default => t("activerecord.labels.auditable_type", :default => "Auditable Type")) %>:</b>
+          <%= @audit.auditable_type %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.audit.action", :default => t("activerecord.labels.action", :default => "Ation")) %>:</b>
+          <%= @audit.action %>
+        </p>
+
+        <p>
+          <b><%= t("activerecord.attributes.audit.changes", :default => t("activerecord.labels.changes", :default => "Changes")) %>:</b>
+          <div>
+          <% @audit.changes.each do |column, values| -%>
+            <% next if values.blank? %>
+            <%= "#{column}: #{values.is_a?(Array) ? values.join(' => ') : values}" %><br/>
+          <% end -%>
+          </div>
+        </p>
+        
+        <p>
+          <b><%= t("activerecord.attributes.audit.version", :default => t("activerecord.labels.version", :default => "Version")) %>:</b>
+          <%= @audit.version %>
+        </p>     
+    </div>
+  </div>
+</div>
+
+<% content_for :sidebar, render(:partial => 'shared/sidebar') -%>
