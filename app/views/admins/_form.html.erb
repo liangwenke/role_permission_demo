@@ -29,9 +29,10 @@
     <div class="group" id="roles">
       <%#= f.label :roles, t("activerecord.attributes.role.name", :default => "Roles"), :class => :label %>
       <label class="label"><input type="checkbox" class="checkbox toggles" /><%= t("activerecord.attributes.role.name", :default => "Roles") %></label>
+      <% roles = @admin.roles.all(:include => 'admin_roles') %>
       <% Role.all.each do |role| -%>
       <div>
-        <label><%= check_box_tag 'admin[role_ids][]', role.id, @admin.roles.include?(role), :class => 'checkbox' %><%= role.name %></label>
+        <label><%= check_box_tag 'admin[role_ids][]', role.id, roles.include?(role), :class => 'checkbox' %><%= role.name %></label>
       </div>
       <% end -%>
       <label class="label"><%= hidden_field_tag 'admin[role_ids][]', '' %></label>

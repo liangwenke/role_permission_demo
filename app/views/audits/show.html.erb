@@ -37,8 +37,7 @@
           <b><%= t("activerecord.attributes.audit.changes", :default => t("activerecord.labels.changes", :default => "Changes")) %>:</b>
           <div>
           <% @audit.changes.each do |column, values| -%>
-            <% next if values.blank? %>
-            <%= "#{column}: #{values.is_a?(Array) ? values.join(' => ') : values}" %><br/>
+            <%= "#{column}: #{values.is_a?(Hash) ? values.join(' => ') : values}" %><br/>
           <% end -%>
           </div>
         </p>

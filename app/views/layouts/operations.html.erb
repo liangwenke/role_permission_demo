@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>Web App</title>
+  <title>Role Permission Dome</title>
   <%= stylesheet_link_tag 'layout', "web_app_theme", "web_app_theme_override", "themes/drastic-dark/style", :cache => true %>
   <%= javascript_include_tag 'jquery', 'jquery.localscroll', 'jquery.scrollTo' %>
   <script type="text/javascript" charset="utf-8">
@@ -59,7 +59,7 @@
 <body>
   <div id="container">
     <div id="header">
-      <h1><a href="/">Web App</a></h1>
+      <h1><a href="/">Role Permission Dome</a></h1>
       <div id="user-navigation">
         <ul class="wat-cf">
           <li><a href="#"><%= t("web-app-theme.profile", :default => "Profile") %></a></li>
@@ -69,14 +69,7 @@
       </div>      
       <div id="main-navigation">
         <ul class="wat-cf">
-          <li class="first active" rel="admins"><a href="/admins">Admins</a></li>
-          <li rel="roles"><a href="/roles">Roles</a></li>
-          <li rel="permissions"><a href="/permissions">Permissions</a></li>
-          <li rel="permission_lines"><a href="/permission_lines">Permission Lines</a></li>
-          <li rel="functions"><a href="/system_functions">Functions</a></li>
-          <li rel="modules"><a href="/system_modules">Modules</a></li>
-          <li rel="departments"><a href="/departments">Departments</a></li>
-          <li rel="operations"><a href="/operations">Operations</a></li>
+          <%= render :partial => 'shared/nav' -%>
         </ul>
       </div>
     </div>    

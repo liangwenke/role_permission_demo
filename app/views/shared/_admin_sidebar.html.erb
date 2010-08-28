@@ -1,0 +1,7 @@
+<div class="block">
+  <h3>Admins</h3>
+  <ul class="navigation">
+    <% if current_admin.has_permission?(2) -%><li><%= link_to '查询', admins_path %></li><% end -%>
+    <% if current_admin.has_permission?(5) -%><li><%= link_to '添加', new_admin_path %></li><% end -%>
+  </ul>
+</div>

@@ -6,8 +6,12 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :permissions, :has_many => [:permission_lines]
   map.resources :departments, :has_many => [:admins]
   map.resources :admins, :audits
-  
-  map.root :admins
+
+  map.login '/login', :controller => 'sessions', :action => 'new'
+  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
+  map.resource :session
+
+  map.root :controller => 'home'
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

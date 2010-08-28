@@ -1,0 +1,9 @@
+<% if current_admin.allow_to_module?(1) -%><li class="first active" rel="admins"><a href="/admins">Admins</a></li><% end -%>
+<% if current_admin.allow_to_module?(2) -%><li rel="roles"><a href="/roles">Roles</a></li><% end -%>
+<% if current_admin.allow_to_module?(3) -%><li rel="permissions"><a href="/permissions">Permissions</a></li><% end -%>
+<% if current_admin.allow_to_module?(4) -%><li rel="permission_lines"><a href="/permission_lines">Permission Lines</a></li><% end -%>
+<% if current_admin.allow_to_module?(5) -%><li rel="functions"><a href="/system_functions">Functions</a></li><% end -%>
+<% if current_admin.allow_to_module?(6) -%><li rel="modules"><a href="/system_modules">Modules</a></li><% end -%>
+<% if current_admin.allow_to_module?(7) -%><li rel="departments"><a href="/departments">Departments</a></li><% end -%>
+<%# if current_admin.allow_to_module?(8) -%><li rel="operations"><a href="/operations">Operations</a></li><%# end -%>
+<%# if current_admin.allow_to_module?(9) -%><li rel="audits"><a href="/audits">Audits</a></li><%# end -%>

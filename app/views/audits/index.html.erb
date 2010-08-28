@@ -56,8 +56,7 @@
             </td>
             <td>
               <% audit.changes.each do |column, values| -%>
-                <% next if values.blank? %>
-                <%= "#{column}: #{values.is_a?(Array) ? values.join(' => ') : values}" %><br/>
+                <%= "#{column}: #{values.is_a?(Hash) ? values.join(' => ') : values}" %><br/>
               <% end -%>
             </td>
             <td>

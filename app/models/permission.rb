@@ -6,8 +6,6 @@ class Permission < ActiveRecord::Base
 
   validates_presence_of :name, :system_function
   validates_uniqueness_of :name
-  
-  acts_as_audited
 
   def system_module
     system_function.system_module

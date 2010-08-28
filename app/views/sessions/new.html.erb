@@ -1,0 +1,16 @@
+<%= flash[:error] %>
+<h1>Login</h1>
+
+<% form_for :user, :url => session_path do -%>
+<p>
+  Name: <br/>
+<%= text_field_tag :name %>
+</p>
+<p>
+  Password: <br/>
+<%= text_field_tag :password %>
+</p>
+<p>
+  <%= submit_tag 'Login' %>
+</p>
+<% end -%>
