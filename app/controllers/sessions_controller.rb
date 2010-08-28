@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   skip_filter :login_required, :authenticate
-  layout false
+  #layout false
   
   def new
   end

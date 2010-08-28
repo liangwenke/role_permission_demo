@@ -66,7 +66,7 @@
           <li><a href="#"><%= t("web-app-theme.settings", :default => "Settings") %></a></li>
           <li><a href="/logout" class="logout"><%= t("web-app-theme.logout", :default => "Logout") %></a></li>
         </ul>
-      </div>      
+      </div>   
       <div id="main-navigation">
         <ul class="wat-cf">
           <!--<li class="first active" rel="admins"><a href="/admins">Admins</a></li>
@@ -78,7 +78,8 @@
           <li rel="departments"><a href="/departments">Departments</a></li>
           <li rel="operations"><a href="/operations">Operations</a></li>
           <li rel="audits"><a href="/audits">Audits</a></li>-->
-          <%= render :partial => 'shared/nav' -%>
+          <li rel="home"><a href="/home">Home</a></li>
+          <%= render :partial => 'shared/nav' if current_admin -%>
         </ul>
       </div>
     </div>    

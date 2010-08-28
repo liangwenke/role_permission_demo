@@ -5,7 +5,7 @@
   
 == Install
 
-  rake db:drop && rake db:create && rake db:migrate && rake db:seed
+  rake db:setup(Or rake db:drop && rake db:create && rake db:migrate && rake db:seed)
   
   ruby script/server
   

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
         return
       end
     end
-    @active_main_navigation = 'admins'
+    @active_main_navigation = 'home'
   end
   
   def login_required
