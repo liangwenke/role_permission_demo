@@ -1,6 +1,6 @@
 class CreateAdminRoles < ActiveRecord::Migration
   def self.up
-    create_table :admin_roles, :id => false do |t|
+    create_table :admin_roles do |t|
       t.integer :admin_id, :role_id
     end
   end
