@@ -15,12 +15,10 @@
   
 == Install
 
-  git clone git://github.com/wenke/app_role_permission_demo.git
-  
-  ruby script/plugin install git://github.com/wenke/app_role_permission_demo.git
+  git clone git://github.com/liangwenke/app_role_permission_demo.git
   
   
 ==Note
 
-Copyright © 2010 liangwenke8@gmail.com, released under the MIT license
+Copyright © 2010 liangwenke.com@gmail.com, released under the MIT license
 
